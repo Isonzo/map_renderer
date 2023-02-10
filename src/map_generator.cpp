@@ -104,7 +104,7 @@ void Map::ColorColumn(const std::string column_name)
     for(int i = 0; i < column_data.size(); i++)
     {
         float data = column_data[i];
-        float percent = (data / max) * 100;
+        float percent = (data - min / max - min) * 100;
 
         fill_color.g = percent * 2;
         
