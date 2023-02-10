@@ -3,14 +3,18 @@
 #include <raylib.h>
 #include <vector>
 
-int main(void)
+int main(int argc, char* argv[])
 {
-    Map map("test_map.png");
+    if (argc < 3)
+    {
+        std::cerr << "Error: Missing required arguments!" << "\n";
+        std::cerr << "Usage: mapgen <input_image> <input_data>" << "\n";
 
-    map.Fill(900, 630, BLUE);
-    map.Fill(1000, 250, GREEN);
-    map.Fill(1250, 600, RED);
-    map.Fill(700, 300, YELLOW);
+        return -1;
+    }
+    Map map(argv[1], argv[2]);
 
-    map.Export("result.png");
+    map.GenerateAll();
+
+    return 0;
 }
